@@ -31,7 +31,7 @@ class PolymorphicJsonSpec extends Specification {
         cloned == original
     }
 
-    def "should return an ObjectMapper"() {
+    def "should return an ObjectMapper from the PolymorphicTypeObjectMapperSupplier"() {
         when:
         def objectMapper = new PolymorphicTypeObjectMapperSupplier().get()
 

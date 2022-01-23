@@ -2,11 +2,18 @@ package com.stansonhealth.polymorphic;
 
 import static com.stansonhealth.polymorphic.PolymorphicJsonTypeSupport.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vladmihalcea.hibernate.type.util.JsonSerializer;
 import com.vladmihalcea.hibernate.type.util.JsonSerializerSupplier;
 import com.vladmihalcea.hibernate.type.util.ObjectMapperWrapper;
 
 public class PolymorphicJsonTypeSerializerSupplier implements JsonSerializerSupplier {
+
+    private final PolymorphicSerializer polymorphicSerializer;
+
+    PolymorphicJsonTypeSerializerSupplier() {
+        this.polymorphicSerializer = buildPolymorphicSerializer();
+    }
 
     static class PolymorphicSerializer implements JsonSerializer {
         private final ObjectMapperWrapper objectMapperWrapper;
@@ -27,9 +34,17 @@ public class PolymorphicJsonTypeSerializerSupplier implements JsonSerializerSupp
 
     @Override
     public JsonSerializer get() {
+        return this.polymorphicSerializer;
+    }
+
+    protected PolymorphicSerializer buildPolymorphicSerializer() {
         return new PolymorphicSerializer(
-                new ObjectMapperWrapper(buildObjectMapper())
+                new ObjectMapperWrapper(getObjectMapper())
         );
+    }
+
+    protected ObjectMapper getObjectMapper() {
+        return buildObjectMapper();
     }
 }
 
