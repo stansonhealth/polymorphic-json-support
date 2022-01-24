@@ -17,6 +17,14 @@ class PolymorphicJsonSpec extends Specification {
         }
     }
 
+    interface Fixture {}
+
+    @EqualsAndHashCode
+    static class TestFixtureA implements Fixture {}
+
+    @EqualsAndHashCode
+    static class TestFixtureB implements Fixture {}
+
     def "should return a clone when calling PolymorphicSerializer.clone()"() {
         given:
         def original = new CloneableClass("foobar")
@@ -37,6 +45,22 @@ class PolymorphicJsonSpec extends Specification {
 
         then:
         objectMapper
+    }
+
+    def "should clone a List of Interfaces"() {
+        given:
+        List<Fixture> fixtures = [
+                new TestFixtureA(),
+                new TestFixtureB()
+        ]
+        def supplier = new PolymorphicJsonTypeSerializerSupplier()
+        def jsonSerializer = supplier.get()
+
+        when:
+        def result = jsonSerializer.clone(fixtures)
+
+        then:
+        result == fixtures
     }
 
 }
