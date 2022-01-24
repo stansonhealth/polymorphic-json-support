@@ -14,7 +14,7 @@ repositories {
 }
 
 group = "com.stansonhealth"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 val publicationName = "polymorphicJsonSupport"
