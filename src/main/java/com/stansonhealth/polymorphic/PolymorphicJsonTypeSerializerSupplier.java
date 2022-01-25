@@ -11,7 +11,7 @@ public class PolymorphicJsonTypeSerializerSupplier implements JsonSerializerSupp
 
     private final PolymorphicSerializer polymorphicSerializer;
 
-    PolymorphicJsonTypeSerializerSupplier() {
+    public PolymorphicJsonTypeSerializerSupplier() {
         this.polymorphicSerializer = buildPolymorphicSerializer();
     }
 
