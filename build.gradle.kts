@@ -108,7 +108,7 @@ publishing {
                 }
                 scm {
                     connection.set("scm:git:git@github.com:stansonhealth/polymorphic-json-support.git")
-                    developerConnection.set("scm:git:git@github.com:stansonhealth/polymorphic-json-supportgit")
+                    developerConnection.set("scm:git:git@github.com:stansonhealth/polymorphic-json-support.git")
                     url.set("https://github.com/stansonhealth/polymorphic-json-support")
                 }
             }
